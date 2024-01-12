@@ -1,5 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
+from edit import *
 
 # Replace 'YOUR_API_ID' and 'YOUR_API_HASH' with your actual API credentials
 api_id = '21364355'
