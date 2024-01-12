@@ -9,7 +9,7 @@ bot_token = '6337104990:AAFxTIVSr3BtFxWEossUWZRbQIY4Dac8J4U'
 app = Client("my_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 
 
-@app.on_message(filters.group & filters.text)
+@app.on_message(filters.group & filters.text & filters.administrators)
 async def delete_font_messages(client: Client, message: Message):
     if message.text and not message.text.isascii():
         # If the message contains non-ASCII characters (indicating it's a font), delete it
@@ -17,10 +17,5 @@ async def delete_font_messages(client: Client, message: Message):
         # Reply that fonts are not allowed
         await message.reply_text("Fonts are not allowed in this group.")
 
-@app.on_message(filters.group & filters.edited)
-async def delete_edited_messages(client: Client, message: Message):
-    # Delete the edited message
-    await message.delete()
-    await message.reply_text("No Message Editing") 
 
 app.run()
