@@ -10,6 +10,7 @@ app = Client("bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 
 ADMINS = [6574111464, 1600454750, 609517172, 2122515260]
 
+
 def contains_font(text):
     # Check if the message contains non-ASCII characters (indicating it's a font)
     return not all(char.isascii() or char in (' ', '\n') for char in text)
@@ -17,7 +18,8 @@ def contains_font(text):
 
 @app.on_message(filters.group & filters.text & ~filters.user(app.me))
 async def delete_font_messages(client: Client, message: Message):
-    if contains_font(message.text):
+    has_emoji = any(char.isemoji() for char in message_text)
+    if not has_emoji and contains_font(message.text):
         # If the message contains non-ASCII characters (indicating it's a font), delete it
         await message.delete()
         # Reply and mention the sender    
