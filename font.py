@@ -18,5 +18,4 @@ async def delete_font_messages(client: Client, message: Message):
         await message.reply_text("Fonts are not allowed in this group.")
 
 
-if __name__ == '__main__':
-    app.run()
+app.run()
